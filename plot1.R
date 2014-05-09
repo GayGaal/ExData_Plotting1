@@ -1,4 +1,4 @@
-## this part of the code is the same for each plot as it creates the data to be read
+## this part of the code is similar for each plot as it creates the data to be read
 ## preparing the names 
 names<-read.table("household_power_consumption.txt", header=TRUE, sep=";", na.strings="?", nrows=1)
 ## now reading only the needed lines from the file
@@ -11,7 +11,7 @@ hpc[,2]<-as.POSIXct(hpc[,2], format="%d/%m/%Y %H:%M:%S") ## setting time
 ## creating graph
 gap <- hpc[,3] ## reading the data for the graph
 ## creating graph
+png(file="plot1.png", height=480, width=480) ## setting output
 par(bg="transparent") ## setting transparent background
 hist(gap, col="red", xlab="Global Active Power (kilowatts)", main="Global Active Power")
-dev.copy(png, file="plot1.png") ## creating png
 dev.off() ## closing device
