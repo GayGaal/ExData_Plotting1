@@ -4,8 +4,9 @@ names<-read.table("household_power_consumption.txt", header=TRUE, sep=";", na.st
 ## now reading only the needed lines from the file
 hpc<-read.table("household_power_consumption.txt", header=FALSE, sep=";", na.strings="?", skip=66637, nrows=2880)
 colnames(hpc)<-colnames(names) ## reading out the names and setting them for the data
+hpc[,2] <- paste(hpc[,1],hpc[,2], sep=" ") ## setting right dates for time
 hpc[,1]<-as.Date(hpc[,1], format="%d/%m/%Y") ## setting dates
-hpc[,2]<-as.POSIXct(strptime(hpc[,2], format="%H:%M:%S")) ## setting time
+hpc[,2]<-as.POSIXct(hpc[,2], format="%d/%m/%Y %H:%M:%S") ## setting time
 ## here the code for each plot should be put
 ## creating graph
 gap <- hpc[,3] ## reading the data for the graph
